@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'article',
     'main',
 ]
 
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blogDB',
+        'NAME': 'blogdb',
         'USER': 'blog',
         'PASSWORD': 'blog',
         'HOST': 'localhost',

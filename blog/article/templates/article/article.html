@@ -1,0 +1,30 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+  <head>
+    <title>部落格</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'article/css/article.css' %}">
+  </head>
+  <body>
+    {% include 'main/menu.html' %}
+    <h2>歡迎來到我的部落格</h2>
+    {% for message in messages %}
+  <p class="{{ message.tags }}">{{ message }}</p>
+{% endfor %}
+    <p><a class="btn" href="{% url 'article:articleCreate' %}">新增文章</a></p>
+    {% for article, comments in articles.items %}
+      <h3>{{ article.title }}</h3>
+      <p>發表時間：{{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
+      <div class="articleContent">{{ article.content|linebreaks|truncatechars_html:30 }}</div>
+      {% for comment in comments %}
+        <div class="commentDiv">
+          <span class="comment">{{ comment.content }}</span>
+          <br>
+          <span class="commentTime">{{ comment.pubDateTime|date:'m月d日 H:i' }}</span>
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </body>
+</html>
